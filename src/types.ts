@@ -1,16 +1,24 @@
 export type NavProp = {
-  nav: string,
+  nav: string;
 };
 
 export type GoFunctionProp = {
-  go: (path: string) => void,
+  go: (path: string) => void;
 };
 
 export type UserInfo = {
-  photo_200?: string,
-  first_name?: string,
-  last_name?: string,
+  photo_200?: string;
+  photo_max_orig?: string;
+  first_name?: string;
+  last_name?: string;
   city?: {
-    title?: string,
-  },
+    title?: string;
+  };
+  country?: {
+    title?: string;
+  };
+  sex: string;
+  is_closed: boolean;
+  bdate: string;
+  bdate_visibility: number;
 };

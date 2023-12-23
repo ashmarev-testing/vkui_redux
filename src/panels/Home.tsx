@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Panel,
@@ -9,10 +9,10 @@ import {
   Cell,
   ButtonGroup,
   Avatar,
-} from '@vkontakte/vkui';
-import { GoFunctionProp, NavProp, UserInfo } from '../types';
-import { useEnableSwipeBack } from '@vkontakte/vk-mini-apps-router';
-import { AppMap } from '../appMap/AppMap';
+} from "@vkontakte/vkui";
+import { GoFunctionProp, NavProp, UserInfo } from "../types";
+import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
+import { AppMap } from "../appMap/AppMap";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -26,11 +26,35 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
       <PanelHeader>Главная</PanelHeader>
       {fetchedUser && (
         <Group
-          header={<Header mode="secondary">Данные пользователя, полученные через VK Bridge</Header>}
+          header={
+            <Header mode="secondary">
+              Данные пользователя, полученные через VK Bridge
+            </Header>
+          }
         >
           <Cell
-            before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200} /> : null}
-            subtitle={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
+            before={
+              fetchedUser.photo_max_orig ? (
+                <Avatar src={fetchedUser.photo_max_orig} />
+              ) : null
+            }
+            subhead={`${
+              fetchedUser.country && fetchedUser.country.title
+                ? fetchedUser.country.title
+                : ""
+            } ${","} ${
+              fetchedUser.city && fetchedUser.city.title
+                ? fetchedUser.city.title
+                : ""
+            }`}
+            subtitle={`${
+              fetchedUser.is_closed ? "Закрытый профиль" : "Открытый профиль"
+            } ${
+              fetchedUser.bdate_visibility == 0
+                ? "Дата рождения скрыта"
+                : "Дата рождения открыта"
+            }
+            ${fetchedUser.sex == "1" ? "Пол Ж" : "Пол М"}`}
           >
             {`${fetchedUser.first_name} ${fetchedUser.last_name}`}
           </Cell>
@@ -44,29 +68,54 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               stretched
               size="l"
               mode="secondary"
-              onClick={() => go('/persik?additional=tra-ta-ta')}
+              onClick={() => go("/persik?additional=tra-ta-ta")}
             >
               Покажите Персика, пожалуйста
             </Button>
-            <Button stretched size="l" mode="secondary" onClick={() => go('/persik/fish')}>
+            <Button
+              stretched
+              size="l"
+              mode="secondary"
+              onClick={() => go("/persik/fish")}
+            >
               А Персик не голоден?
             </Button>
           </ButtonGroup>
 
           <ButtonGroup mode="horizontal" stretched>
-            <Button stretched size="l" mode="secondary" onClick={() => go('/onboarding_1')}>
+            <Button
+              stretched
+              size="l"
+              mode="secondary"
+              onClick={() => go("/onboarding_1")}
+            >
               Обучение
             </Button>
-            <Button stretched size="l" mode="secondary" onClick={() => go('/blocker_modal')}>
+            <Button
+              stretched
+              size="l"
+              mode="secondary"
+              onClick={() => go("/blocker_modal")}
+            >
               Блокировка навигации
             </Button>
           </ButtonGroup>
 
           <ButtonGroup mode="horizontal" stretched>
-            <Button stretched size="l" mode="secondary" onClick={() => go('/empty')}>
+            <Button
+              stretched
+              size="l"
+              mode="secondary"
+              onClick={() => go("/empty")}
+            >
               На пустую страницу!
             </Button>
-            <Button stretched size="l" mode="secondary" onClick={() => go('/alternative')}>
+            <Button
+              stretched
+              size="l"
+              mode="secondary"
+              onClick={() => go("/alternative")}
+            >
               На другой Root
             </Button>
           </ButtonGroup>
