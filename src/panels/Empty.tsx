@@ -6,6 +6,7 @@ import {
   ButtonGroup,
   Button,
   Group,
+  Link,
   //useAdaptivityWithJSMediaQueries,
   //IconButton,
 } from "@vkontakte/vkui";
@@ -15,6 +16,7 @@ import {
   useRouteNavigator,
   useEnableSwipeBack,
   getInitialLocation,
+  useSearchParams,
 } from "@vkontakte/vk-mini-apps-router";
 //import { Icon28Profile } from "@vkontakte/icons";
 //import { Icon28HelpOutline } from "@vkontakte/icons";
@@ -24,16 +26,19 @@ import {
 // пути до модалок обучения
 import { HOME_PANEL_MODALS } from "../routes";
 // Custom
-import { CustomPanelHeader, CustomComponent } from "../components";
+import { CustomPanelHeader, CustomComponent, ItemDetail } from "../components";
 
 export const Empty = ({ nav }: NavProp) => {
   useEnableSwipeBack();
   const routeNavigator = useRouteNavigator();
-
   //const popout = EmptyPopout();
   const initialLocation = getInitialLocation();
+  const pageName = "Подробное описание объекта";
   //const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
   const windowNavigatorLanguage = navigator.language;
+  const [params] = useSearchParams();
+  const itemId = Number(params.get("id"));
+  //{windowNavigatorLanguage ? windowNavigatorLanguage : ""}
   //const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
 
   //const helpIcon = useMemo(() => {
@@ -51,16 +56,10 @@ export const Empty = ({ nav }: NavProp) => {
 
   return (
     <Panel nav={nav}>
-      <CustomPanelHeader
-        separator={false}
-        //after={helpIcon}
-        title="Пустая страница"
-      />
+      <CustomPanelHeader after="после" title="Назад" />
       <Group
         header={
-          <Header mode="secondary">
-            Вы находитель здесь: {`${initialLocation?.pathname}`}
-          </Header>
+          <Header mode="secondary">{`${"Главная страница->"}${pageName}`}</Header>
         }
       >
         <ButtonGroup stretched mode="vertical">
@@ -76,12 +75,7 @@ export const Empty = ({ nav }: NavProp) => {
               Обучение
             </Button>
           </ButtonGroup>
-          <ButtonGroup>
-            <Button>
-              {windowNavigatorLanguage ? windowNavigatorLanguage : ""}
-            </Button>
-          </ButtonGroup>
-          <CustomComponent></CustomComponent>
+          {itemId ? <ItemDetail itemId={itemId}></ItemDetail> : ""}
         </ButtonGroup>
       </Group>
     </Panel>

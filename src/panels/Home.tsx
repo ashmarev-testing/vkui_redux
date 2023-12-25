@@ -12,7 +12,7 @@ import {
 } from "@vkontakte/vkui";
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
-import { AppMap } from "../appMap/AppMap";
+import { CustomComponent } from "../components";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -75,7 +75,6 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               А Персик не голоден?
             </Button>
           </ButtonGroup>
-
           <ButtonGroup mode="horizontal" stretched>
             <Button
               stretched
@@ -83,36 +82,26 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               mode="secondary"
               onClick={() => go("/onboarding_1")}
             >
-              Обучение
+              Обучение работе с приложением
             </Button>
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
-              onClick={() => go("/blocker_modal")}
-            >
-              Блокировка навигации
-            </Button>
-          </ButtonGroup>
-
-          <ButtonGroup mode="horizontal" stretched>
             <Button
               stretched
               size="l"
               mode="secondary"
               onClick={() => go("/empty")}
             >
-              На пустую страницу!
+              Экран подробной информации
             </Button>
             <Button
               stretched
               size="l"
               mode="secondary"
-              onClick={() => go("/alternative")}
+              onClick={() => go("/persik?additional=tra-ta-ta")}
             >
-              На другой Root
+              Фильтр
             </Button>
           </ButtonGroup>
+          <CustomComponent></CustomComponent>
         </ButtonGroup>
       </Group>
     </Panel>

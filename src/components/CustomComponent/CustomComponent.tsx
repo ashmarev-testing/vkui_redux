@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Group, CardGrid, ContentCard } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import "./CustomComponent.css";
+import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 
 export const CustomComponent = (props: any) => {
+  const routeNavigator = useRouteNavigator();
   const [list, setList] = useState<
     {
       id: number;
@@ -25,12 +27,20 @@ export const CustomComponent = (props: any) => {
       });
   }, []);
 
+  const handleClick = (itemId: number) => {
+    routeNavigator.push(`/${"empty?id="}${itemId}`);
+  };
+
   return (
     <Group>
       <CardGrid size="l">
         {list.map((item, index) => {
           return (
-            <div id={"CustomComponent_" + item.id} key={item.id}>
+            <div
+              id={"CustomComponent_" + item.id}
+              key={item.id}
+              onClick={() => handleClick(item.id)}
+            >
               <ContentCard
                 disabled
                 //src={item.url}
