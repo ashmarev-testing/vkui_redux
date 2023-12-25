@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Tabs,
-  HorizontalScroll,
-  Header,
-  Group,
-  SimpleCell,
-  Link,
-  CardGrid,
-  ContentCard,
-} from "@vkontakte/vkui";
+import { Group, CardGrid, ContentCard } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import "./CustomComponent.css";
 

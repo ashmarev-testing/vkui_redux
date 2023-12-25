@@ -2,14 +2,12 @@ import React, { useMemo } from "react";
 
 import {
   Panel,
-  PanelHeader,
-  PanelHeaderBack,
   Header,
   ButtonGroup,
   Button,
   Group,
-  useAdaptivityWithJSMediaQueries,
-  IconButton,
+  //useAdaptivityWithJSMediaQueries,
+  //IconButton,
 } from "@vkontakte/vkui";
 import { NavProp } from "../types";
 //import { PERSIK_PANEL_MODALS } from "../routes";
@@ -18,8 +16,8 @@ import {
   useEnableSwipeBack,
   getInitialLocation,
 } from "@vkontakte/vk-mini-apps-router";
-import { Icon28Profile } from "@vkontakte/icons";
-import { Icon28HelpOutline } from "@vkontakte/icons";
+//import { Icon28Profile } from "@vkontakte/icons";
+//import { Icon28HelpOutline } from "@vkontakte/icons";
 
 //import { EmptyPopout } from "../popouts/EmptyPopout";
 
@@ -34,22 +32,22 @@ export const Empty = ({ nav }: NavProp) => {
 
   //const popout = EmptyPopout();
   const initialLocation = getInitialLocation();
-  const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
+  //const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
   const windowNavigatorLanguage = navigator.language;
-  const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
+  //const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
 
-  const helpIcon = useMemo(() => {
-    return isDesktop ? (
-      <IconButton
-        aria-label="helpIcon"
-        onClick={() =>
-          routeNavigator.push(`/${HOME_PANEL_MODALS.ONBOARDING_1}`)
-        }
-      >
-        <Icon28HelpOutline />
-      </IconButton>
-    ) : undefined;
-  }, [routeNavigator, isDesktop]);
+  //const helpIcon = useMemo(() => {
+  //  return isDesktop ? (
+  //    <IconButton
+  //      aria-label="helpIcon"
+  //      onClick={() =>
+  //        routeNavigator.push(`/${HOME_PANEL_MODALS.ONBOARDING_1}`)
+  //      }
+  //    >
+  //      <Icon28HelpOutline />
+  //    </IconButton>
+  //  ) : undefined;
+  //}, [routeNavigator, isDesktop]);
 
   return (
     <Panel nav={nav}>
