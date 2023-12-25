@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Group, CardGrid, ContentCard } from "@vkontakte/vkui";
+import { Group, CardGrid } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import "./ItemDetail.css";
-import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
+//import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 
 export const ItemDetail = (props: any) => {
-  const routeNavigator = useRouteNavigator();
+  //const routeNavigator = useRouteNavigator();
   const [list, setList] = useState<
     {
       id: number;

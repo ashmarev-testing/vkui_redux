@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import {
   Panel,
@@ -6,7 +6,7 @@ import {
   ButtonGroup,
   Button,
   Group,
-  Link,
+  //Link,
   //useAdaptivityWithJSMediaQueries,
   //IconButton,
 } from "@vkontakte/vkui";
@@ -15,7 +15,7 @@ import { NavProp } from "../types";
 import {
   useRouteNavigator,
   useEnableSwipeBack,
-  getInitialLocation,
+  //getInitialLocation,
   useSearchParams,
 } from "@vkontakte/vk-mini-apps-router";
 //import { Icon28Profile } from "@vkontakte/icons";
@@ -26,16 +26,16 @@ import {
 // пути до модалок обучения
 import { HOME_PANEL_MODALS } from "../routes";
 // Custom
-import { CustomPanelHeader, CustomComponent, ItemDetail } from "../components";
+import { CustomPanelHeader, ItemDetail } from "../components";
 
 export const Empty = ({ nav }: NavProp) => {
   useEnableSwipeBack();
   const routeNavigator = useRouteNavigator();
   //const popout = EmptyPopout();
-  const initialLocation = getInitialLocation();
+  //const initialLocation = getInitialLocation();
   const pageName = "Подробное описание объекта";
   //const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
-  const windowNavigatorLanguage = navigator.language;
+  //const windowNavigatorLanguage = navigator.language;
   const [params] = useSearchParams();
   const itemId = Number(params.get("id"));
   //{windowNavigatorLanguage ? windowNavigatorLanguage : ""}
