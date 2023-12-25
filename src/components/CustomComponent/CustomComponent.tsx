@@ -10,9 +10,9 @@ import {
   ContentCard,
 } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
-import "./CustomDetail.css";
+import "./CustomComponent.css";
 
-export const CustomDetail = (props: any) => {
+export const CustomComponent = (props: any) => {
   const [list, setList] = useState<
     {
       id: number;
@@ -39,15 +39,15 @@ export const CustomDetail = (props: any) => {
       <CardGrid size="l">
         {list.map((item, index) => {
           return (
-            <div id={"CustomDetail_" + item.id} key={item.id}>
+            <div id={"CustomComponent_" + item.id} key={item.id}>
               <ContentCard
                 disabled
                 //src={item.url}
                 alt={item.title}
-                subtitle="unsplash"
+                subtitle="Subtitle"
                 header={item.title}
-                text="Texting"
-                caption="Photo by ..."
+                text="Text"
+                caption="caption"
                 maxHeight={100}
               />
             </div>

@@ -3,10 +3,11 @@ import React from "react";
 import {
   Panel,
   PanelHeader,
+  PanelHeaderBack,
   Header,
+  ButtonGroup,
   Button,
   Group,
-  ButtonGroup,
 } from "@vkontakte/vkui";
 import { NavProp } from "../types";
 //import { PERSIK_PANEL_MODALS } from "../routes";
@@ -15,9 +16,13 @@ import {
   useEnableSwipeBack,
   getInitialLocation,
 } from "@vkontakte/vk-mini-apps-router";
-//import { AppMap } from "../appMap/AppMap";
+//import { Icon28Profile } from "@vkontakte/icons";
 //import { EmptyPopout } from "../popouts/EmptyPopout";
-import { CustomDetail } from "../components/CustomDetail";
+
+// пути до модалок обучения
+import { HOME_PANEL_MODALS } from "../routes";
+// Custom
+import { CustomPanelHeader, CustomComponent } from "../components";
 
 export const Empty = ({ nav }: NavProp) => {
   useEnableSwipeBack();
@@ -25,11 +30,15 @@ export const Empty = ({ nav }: NavProp) => {
 
   //const popout = EmptyPopout();
   const initialLocation = getInitialLocation();
-  const groupHeader = `Первоначальный адрес: ${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
+  const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
   const windowNavigatorLanguage = navigator.language;
   return (
     <Panel nav={nav}>
-      <PanelHeader>Пустая страница (Empty)</PanelHeader>
+      <CustomPanelHeader
+        separator={false}
+        //after={shoppingCartIcon}
+        title="Пустая страница"
+      />
       <Group header={<Header mode="secondary">{groupHeader}</Header>}>
         <ButtonGroup stretched mode="vertical">
           <ButtonGroup stretched mode="horizontal">
@@ -44,21 +53,20 @@ export const Empty = ({ nav }: NavProp) => {
             <Button
               stretched
               size="l"
-              mode="primary"
-              onClick={() => routeNavigator.push("/")}
+              mode="secondary"
+              onClick={() =>
+                routeNavigator.push(`/${HOME_PANEL_MODALS.ONBOARDING_1}`)
+              }
             >
-              На главную 2
+              Обучение
             </Button>
           </ButtonGroup>
-          <Button
-            stretched
-            size="l"
-            mode="primary"
-            onClick={() => routeNavigator.push("/")}
-          >
-            {windowNavigatorLanguage ? windowNavigatorLanguage : ""}
-          </Button>
-          <CustomDetail></CustomDetail>
+          <ButtonGroup>
+            <Button>
+              {windowNavigatorLanguage ? windowNavigatorLanguage : ""}
+            </Button>
+          </ButtonGroup>
+          <CustomComponent></CustomComponent>
         </ButtonGroup>
       </Group>
     </Panel>

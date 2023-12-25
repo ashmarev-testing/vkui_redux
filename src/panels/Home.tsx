@@ -23,15 +23,9 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
   useEnableSwipeBack();
   return (
     <Panel nav={nav}>
-      <PanelHeader>Главная</PanelHeader>
+      <PanelHeader>Главная страница</PanelHeader>
       {fetchedUser && (
-        <Group
-          header={
-            <Header mode="secondary">
-              Данные пользователя, полученные через VK Bridge
-            </Header>
-          }
-        >
+        <Group header={<Header mode="secondary">Данные профиля</Header>}>
           <Cell
             before={
               fetchedUser.photo_max_orig ? (
@@ -121,7 +115,6 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
           </ButtonGroup>
         </ButtonGroup>
       </Group>
-      <AppMap></AppMap>
     </Panel>
   );
 };
