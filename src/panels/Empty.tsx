@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import {
   Panel,
@@ -8,6 +8,8 @@ import {
   ButtonGroup,
   Button,
   Group,
+  useAdaptivityWithJSMediaQueries,
+  IconButton,
 } from "@vkontakte/vkui";
 import { NavProp } from "../types";
 //import { PERSIK_PANEL_MODALS } from "../routes";
@@ -16,7 +18,9 @@ import {
   useEnableSwipeBack,
   getInitialLocation,
 } from "@vkontakte/vk-mini-apps-router";
-//import { Icon28Profile } from "@vkontakte/icons";
+import { Icon28Profile } from "@vkontakte/icons";
+import { Icon28HelpOutline } from "@vkontakte/icons";
+
 //import { EmptyPopout } from "../popouts/EmptyPopout";
 
 // пути до модалок обучения
@@ -32,24 +36,37 @@ export const Empty = ({ nav }: NavProp) => {
   const initialLocation = getInitialLocation();
   const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
   const windowNavigatorLanguage = navigator.language;
+  const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
+
+  const helpIcon = useMemo(() => {
+    return isDesktop ? (
+      <IconButton
+        aria-label="helpIcon"
+        onClick={() =>
+          routeNavigator.push(`/${HOME_PANEL_MODALS.ONBOARDING_1}`)
+        }
+      >
+        <Icon28HelpOutline />
+      </IconButton>
+    ) : undefined;
+  }, [routeNavigator, isDesktop]);
+
   return (
     <Panel nav={nav}>
       <CustomPanelHeader
         separator={false}
-        //after={shoppingCartIcon}
+        //after={helpIcon}
         title="Пустая страница"
       />
-      <Group header={<Header mode="secondary">{groupHeader}</Header>}>
+      <Group
+        header={
+          <Header mode="secondary">
+            Вы находитель здесь: {`${initialLocation?.pathname}`}
+          </Header>
+        }
+      >
         <ButtonGroup stretched mode="vertical">
           <ButtonGroup stretched mode="horizontal">
-            <Button
-              stretched
-              size="l"
-              mode="primary"
-              onClick={() => routeNavigator.push("/")}
-            >
-              На главную
-            </Button>
             <Button
               stretched
               size="l"

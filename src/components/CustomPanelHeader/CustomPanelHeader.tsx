@@ -3,11 +3,13 @@ import {
   PanelHeaderProps,
   PanelHeader,
   PanelHeaderBack,
+  //  PanelHeaderButton,
 } from "@vkontakte/vkui";
 import {
   useRouteNavigator,
   useFirstPageCheck,
 } from "@vkontakte/vk-mini-apps-router";
+//import { Icon28Notifications } from "@vkontakte/icons";
 
 export type CustomPanelHeaderProps = {
   title: string;
