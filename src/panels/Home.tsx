@@ -62,27 +62,9 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               stretched
               size="l"
               mode="secondary"
-              onClick={() => go("/persik?additional=tra-ta-ta")}
-            >
-              Покажите Персика, пожалуйста
-            </Button>
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
-              onClick={() => go("/persik/fish")}
-            >
-              А Персик не голоден?
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup mode="horizontal" stretched>
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
               onClick={() => go("/onboarding_1")}
             >
-              Обучение работе с приложением
+              Показываем только при первом старте
             </Button>
             <Button
               stretched
@@ -90,7 +72,7 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               mode="secondary"
               onClick={() => go("/persik?additional=tra-ta-ta")}
             >
-              Фильтр
+              Здесь будет поиск
             </Button>
           </ButtonGroup>
           <NasaItem></NasaItem>
