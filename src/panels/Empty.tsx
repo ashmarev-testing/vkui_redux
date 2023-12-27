@@ -1,17 +1,7 @@
 import React from "react";
 
-import {
-  Panel,
-  Header,
-  ButtonGroup,
-  Button,
-  Group,
-  //Link,
-  //useAdaptivityWithJSMediaQueries,
-  //IconButton,
-} from "@vkontakte/vkui";
+import { Panel, Header, ButtonGroup, Button, Group } from "@vkontakte/vkui";
 import { NavProp } from "../types";
-//import { PERSIK_PANEL_MODALS } from "../routes";
 import {
   useRouteNavigator,
   useEnableSwipeBack,
@@ -20,24 +10,23 @@ import {
 } from "@vkontakte/vk-mini-apps-router";
 //import { Icon28Profile } from "@vkontakte/icons";
 //import { Icon28HelpOutline } from "@vkontakte/icons";
-
 //import { EmptyPopout } from "../popouts/EmptyPopout";
 
 // пути до модалок обучения
 import { HOME_PANEL_MODALS } from "../routes";
 // Custom
-import { CustomPanelHeader, ItemDetail } from "../components";
+import { CustomPanelHeader, NasaItemDetail } from "../components";
 
 export const Empty = ({ nav }: NavProp) => {
   useEnableSwipeBack();
   const routeNavigator = useRouteNavigator();
   //const popout = EmptyPopout();
   //const initialLocation = getInitialLocation();
-  const pageName = "Подробное описание объекта";
+  const pageName = "Подробное описание объекта от Nasa";
   //const groupHeader = `${initialLocation?.pathname}${initialLocation?.search}${initialLocation?.hash}`;
   //const windowNavigatorLanguage = navigator.language;
   const [params] = useSearchParams();
-  const itemId = Number(params.get("id"));
+  const nasaId = params.get("nasaId");
   //{windowNavigatorLanguage ? windowNavigatorLanguage : ""}
   //const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
 
@@ -55,29 +44,17 @@ export const Empty = ({ nav }: NavProp) => {
   //}, [routeNavigator, isDesktop]);
 
   return (
-    <Panel nav={nav}>
-      <CustomPanelHeader after="после" title="Назад" />
-      <Group
-        header={
-          <Header mode="secondary">{`${"Главная страница->"}${pageName}`}</Header>
-        }
-      >
-        <ButtonGroup stretched mode="vertical">
-          <ButtonGroup stretched mode="horizontal">
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
-              onClick={() =>
-                routeNavigator.push(`/${HOME_PANEL_MODALS.ONBOARDING_1}`)
-              }
-            >
-              Обучение
-            </Button>
-          </ButtonGroup>
-          {itemId ? <ItemDetail itemId={itemId}></ItemDetail> : ""}
-        </ButtonGroup>
-      </Group>
-    </Panel>
+    <>
+      <Panel nav={nav}>
+        <CustomPanelHeader after="после" title="Назад" />
+        <Group
+          header={
+            <Header mode="secondary">{`${"Главная страница->"}${pageName}`}</Header>
+          }
+        >
+          <NasaItemDetail nasaId={nasaId}></NasaItemDetail>
+        </Group>
+      </Panel>
+    </>
   );
 };

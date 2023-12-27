@@ -12,7 +12,7 @@ import {
 } from "@vkontakte/vkui";
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
-import { CustomComponent } from "../components";
+import { NasaItem } from "../components";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -88,20 +88,12 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               stretched
               size="l"
               mode="secondary"
-              onClick={() => go("/empty")}
-            >
-              Экран подробной информации
-            </Button>
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
               onClick={() => go("/persik?additional=tra-ta-ta")}
             >
               Фильтр
             </Button>
           </ButtonGroup>
-          <CustomComponent></CustomComponent>
+          <NasaItem></NasaItem>
         </ButtonGroup>
       </Group>
     </Panel>

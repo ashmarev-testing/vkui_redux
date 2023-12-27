@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Group, CardGrid, ContentCard } from "@vkontakte/vkui";
+import { Button, Group, CardGrid, ContentCard } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import "./CustomComponent.css";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
@@ -46,7 +46,7 @@ export const CustomComponent = (props: any) => {
                 //src={item.url}
                 alt={item.title}
                 subtitle="Subtitle"
-                header={item.title}
+                header={`${item.id} ${item.title}`}
                 text="Text"
                 caption="caption"
                 maxHeight={100}

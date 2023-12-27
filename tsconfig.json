@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "baseUrl": "./",
+    "downlevelIteration": true, // магия, если нет es2015
     //"rootDir": "./src", если хочу абсолютную адресацию использовать
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
