@@ -9,9 +9,11 @@ import {
   Cell,
   ButtonGroup,
   Avatar,
+  Search,
 } from "@vkontakte/vkui";
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
+import { Icon24Done, Icon24User } from "@vkontakte/icons";
 import { NasaItem } from "../components";
 
 type HomeProps = NavProp &
@@ -75,8 +77,10 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               Здесь будет поиск
             </Button>
           </ButtonGroup>
-          <NasaItem></NasaItem>
         </ButtonGroup>
+      </Group>
+      <Group>
+        <NasaItem></NasaItem>
       </Group>
     </Panel>
   );
