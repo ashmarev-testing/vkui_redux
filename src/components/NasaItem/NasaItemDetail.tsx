@@ -4,38 +4,8 @@ import { Group, CardGrid, ContentCard } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 
 type NasaImageData = {
-  SourceFile: string;
-  ExifTool: {
-    ExifToolVersion: number;
-  };
-  File: {
-    BitsPerSample: number;
-    ColorComponents: number;
-    Directory: string;
-    EncodingProcess: string;
-    FileAccessDate: string;
-    FileInodeChangeDate: string;
-    FileModifyDate: string;
-    FileName: string;
-    FilePermissions: string;
-    FileSize: string;
-    FileType: string;
-    FileTypeExtension: string;
-    ImageHeight: number;
-    ImageWidth: number;
-    MIMEType: string;
-    YCbCrSubSampling: string;
-  };
-  JFIF: {
-    JFIFVersion: number;
-    ResolutionUnit: string;
-    XResolution: number;
-    YResolution: number;
-  };
-  Composite: {
-    ImageSize: string;
-    Megapixels: number;
-  };
+  "Composite:ImageSize": string;
+  "Composite:Megapixels": number;
   "AVAIL:MediaType": string;
   "AVAIL:NASAID": string;
   "AVAIL:Owner": string;
