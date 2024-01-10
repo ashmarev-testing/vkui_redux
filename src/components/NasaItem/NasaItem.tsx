@@ -34,27 +34,27 @@ export type NasaItemData = {
 
 export const NasaItem: React.FC = () => {
   const [arr, setArr] = useState<NasaItemData[] | null>();
-  //const [query, setQuery] = useState("");
   const routeNavigator = useRouteNavigator();
   // redux-toolkit запись
   const dispatch = useDispatch();
-  //dispatch(setText(query);
   //
   // redux-toolkit чтение
-  const query_redux = useSelector(
+  const query = useSelector(
     (state: { text: { value: string } }) => state.text.value,
   );
-  if (query_redux) {
-    console.log(query_redux);
+  if (query) {
+    console.log("NasaItem 46", query);
   }
   //
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (query_redux.length > 0) {
+        // чтобы не искать меньше 4 символов
+        if (query.length > 3) {
           const { data } = await axios.get(
-            `https://images-api.nasa.gov/search?q=${query_redux}`,
+            `https://images-api.nasa.gov/search?q=${query}`,
           );
+          // сортировка
           data.collection.items.sort(
             (a: NasaItemData, b: NasaItemData) =>
               new Date(b.data[0].date_created).getTime() -
@@ -71,7 +71,7 @@ export const NasaItem: React.FC = () => {
     };
 
     fetchData();
-  }, [query_redux]);
+  }, [query]);
 
   const handleClick = (itemId: string) => {
     routeNavigator.push(`/${"empty?nasaId="}${itemId}`);
@@ -86,7 +86,7 @@ export const NasaItem: React.FC = () => {
           className={"input"}
           //onChange={(event) => setQuery(event.target.value)}
           onChange={(event) => dispatch(setText(event.target.value))}
-          value={query_redux}
+          value={query}
         />
       </div>
       <CardGrid size="m">
