@@ -26,6 +26,8 @@ type NasaImageData = {
 export const NasaItemDetail = (props: any) => {
   //const routeNavigator = useRouteNavigator();
   const [item, setItem] = useState<NasaImageData | null>(null);
+  const [photo, setPhoto] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     fetch(
       `https://images-assets.nasa.gov/image/${
@@ -42,6 +44,22 @@ export const NasaItemDetail = (props: any) => {
       });
   }, [props.nasaId]);
 
+  useEffect(() => {
+    fetch(
+      `https://images-assets.nasa.gov/image/${
+        props.nasaId ? props.nasaId : "PIA25163"
+      }/collection.json`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("NasaItemDetail 55", data[data.length - 2]);
+        setPhoto(data[data.length - 2]); // считаем, что тумбнайл в предпоследнем элементе массива
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [props.nasaId]);
+
   return (
     <>
       {item && (
@@ -50,7 +68,7 @@ export const NasaItemDetail = (props: any) => {
             <div>
               <ContentCard
                 disabled
-                //src={item.}
+                src={photo}
                 alt={item["AVAIL:Description"]}
                 header={item["AVAIL:Title"]}
                 subtitle={item["AVAIL:DateCreated"]}
