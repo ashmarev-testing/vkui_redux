@@ -7,7 +7,7 @@ import "@vkontakte/vkui/dist/vkui.css";
 import { Icon24Done, Icon24User } from "@vkontakte/icons";
 
 export type NasaItemData = {
-  date_for_sort: string;
+  //date_for_sort: string;
   href: string;
   data: {
     center: string;
@@ -39,15 +39,10 @@ export const NasaItem: React.FC = () => {
           const { data } = await axios.get(
             `https://images-api.nasa.gov/search?q=${query}`,
           );
-          data.collection.items.forEach((item: NasaItemData) => {
-            if (item) {
-              item.date_for_sort = item.data[0].date_created;
-            }
-          });
           data.collection.items.sort(
             (a: NasaItemData, b: NasaItemData) =>
-              new Date(b.date_for_sort).getTime() -
-              new Date(a.date_for_sort).getTime(),
+              new Date(b.data[0].date_created).getTime() -
+              new Date(a.data[0].date_created).getTime(),
           );
 
           setArr(data.collection.items);
@@ -79,24 +74,28 @@ export const NasaItem: React.FC = () => {
       </div>
       <CardGrid size="m">
         {arr && arr.length > 0
-          ? arr.map((item, index) => (
-              <div
-                id={"Card " + item.data[0].nasa_id}
-                key={index}
-                onClick={() => handleClick(item.data[0].nasa_id)}
-              >
-                <ContentCard
-                  disabled
-                  src={item.links ? item.links[0].href : ""}
-                  alt={item.data[0].description}
-                  header={item.data[0].title}
-                  subtitle={item.data[0].date_created}
-                  text={item.data[0].description}
-                  caption={item.data[0].secondary_creator}
-                  maxHeight={200}
-                />
-              </div>
-            ))
+          ? arr.map((item, index) =>
+              item.data[0].media_type == "image" ? (
+                <div
+                  id={"Card " + item.data[0].nasa_id}
+                  key={index}
+                  onClick={() => handleClick(item.data[0].nasa_id)}
+                >
+                  <ContentCard
+                    disabled
+                    src={item.links ? item.links[0].href : ""}
+                    //alt={item.data[0].description}
+                    header={item.data[0].title}
+                    subtitle={item.data[0].date_created}
+                    //text={item.data[0].description}
+                    caption={item.data[0].secondary_creator}
+                    maxHeight={200}
+                  />
+                </div>
+              ) : (
+                ""
+              ),
+            )
           : ""}
       </CardGrid>
     </>
