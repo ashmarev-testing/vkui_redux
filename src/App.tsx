@@ -18,7 +18,6 @@ import {
 } from "@vkontakte/vk-mini-apps-router";
 
 import { Home } from "./panels/Home";
-import Persik from "./panels/Persik";
 import {
   DEFAULT_ROOT,
   DEFAULT_VIEW,
@@ -96,7 +95,6 @@ function App() {
                 fetchedUser={fetchedUser}
                 go={go}
               />
-              <Persik nav={DEFAULT_VIEW_PANELS.PERSIK} />
             </View>
             <View
               nav={EMPTY_VIEW}
