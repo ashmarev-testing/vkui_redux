@@ -6,7 +6,7 @@ import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import "@vkontakte/vkui/dist/vkui.css";
 // redux-toolkit запись
 import { useDispatch } from "react-redux";
-import { setText } from "../../store/slice";
+import { setQuery } from "../../store/slice";
 //
 // redux-toolkit чтение
 import { useSelector } from "react-redux";
@@ -85,7 +85,7 @@ export const NasaItem: React.FC = () => {
           placeholder={"..."}
           className={"input"}
           //onChange={(event) => setQuery(event.target.value)}
-          onChange={(event) => dispatch(setText(event.target.value))}
+          onChange={(event) => dispatch(setQuery(event.target.value))}
           value={query}
         />
       </div>
