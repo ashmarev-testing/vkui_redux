@@ -25,12 +25,9 @@ import {
   EMPTY_VIEW,
   EMPTY_VIEW_PANELS,
   HOME_PANEL_MODALS,
-  PERSIK_PANEL_MODALS,
 } from "./routes";
 import { Empty } from "./panels/Empty";
-import { PersikModal } from "./modals/PersikModal";
 import { UserModal } from "./modals/UserModal";
-import { BlockerModal } from "./modals/BlockerModal";
 import { OnboardingOne } from "./onboarding/OnboardingOne";
 import { OnboardingTwo } from "./onboarding/OnboardingTwo";
 import { OnboardingThree } from "./onboarding/OnboardingThree";
@@ -66,8 +63,6 @@ function App() {
       activeModal={activeModal}
       onClose={() => routeNavigator.hideModal()}
     >
-      <PersikModal nav={PERSIK_PANEL_MODALS.PERSIK}></PersikModal>
-      <BlockerModal nav={HOME_PANEL_MODALS.BLOCKER} />
       <UserModal
         nav={HOME_PANEL_MODALS.USER}
         fetchedUser={fetchedUser}
