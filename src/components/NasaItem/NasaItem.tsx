@@ -1,10 +1,9 @@
 //NasaItem.tsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Group, CardGrid, ContentCard, Search } from "@vkontakte/vkui";
+import { CardGrid, ContentCard } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import "@vkontakte/vkui/dist/vkui.css";
-import { Icon24Done, Icon24User } from "@vkontakte/icons";
 
 export type NasaItemData = {
   //date_for_sort: string;

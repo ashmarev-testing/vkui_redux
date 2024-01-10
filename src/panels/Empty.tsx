@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Panel, Header, ButtonGroup, Button, Group } from "@vkontakte/vkui";
+import { Panel, Header, Group } from "@vkontakte/vkui";
 import { NavProp } from "../types";
 import {
-  useRouteNavigator,
+  //useRouteNavigator,
   useEnableSwipeBack,
   //getInitialLocation,
   useSearchParams,
@@ -12,14 +12,13 @@ import {
 //import { Icon28HelpOutline } from "@vkontakte/icons";
 //import { EmptyPopout } from "../popouts/EmptyPopout";
 
-// пути до модалок обучения
-import { HOME_PANEL_MODALS } from "../routes";
+//import { HOME_PANEL_MODALS } from "../routes";
 // Custom
 import { CustomPanelHeader, NasaItemDetail } from "../components";
 
 export const Empty = ({ nav }: NavProp) => {
   useEnableSwipeBack();
-  const routeNavigator = useRouteNavigator();
+  //const routeNavigator = useRouteNavigator();
   //const popout = EmptyPopout();
   //const initialLocation = getInitialLocation();
   const pageName = "Подробное описание объекта от Nasa";
