@@ -1,32 +1,9 @@
-// store.ts
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface QueryState {
-  queryString: string;
-}
-
-const initialState: QueryState = {
-  queryString: "",
-};
-
-const querySlice = createSlice({
-  name: "query",
-  initialState,
-  reducers: {
-    setQueryString: (state: any, action: PayloadAction<string>) => {
-      state.queryString = action.payload;
-    },
-  },
-});
-
-export const { setQueryString } = querySlice.actions;
+//store.ts
+import { configureStore } from "@reduxjs/toolkit";
+import textSlice from "./slice"; // Подключение вашего reducer
 
 export default configureStore({
   reducer: {
-    query: querySlice.reducer,
+    text: textSlice, // Используйте непосредственно textSlice здесь
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
 });

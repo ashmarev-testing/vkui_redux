@@ -8,11 +8,6 @@ import {
   //getInitialLocation,
   useSearchParams,
 } from "@vkontakte/vk-mini-apps-router";
-//import { Icon28Profile } from "@vkontakte/icons";
-//import { Icon28HelpOutline } from "@vkontakte/icons";
-//import { EmptyPopout } from "../popouts/EmptyPopout";
-
-//import { HOME_PANEL_MODALS } from "../routes";
 // Custom
 import { CustomPanelHeader, NasaItemDetail } from "../components";
 
@@ -26,6 +21,7 @@ export const Empty = ({ nav }: NavProp) => {
   //const windowNavigatorLanguage = navigator.language;
   const [params] = useSearchParams();
   const nasaId = params.get("nasaId");
+
   //{windowNavigatorLanguage ? windowNavigatorLanguage : ""}
   //const { isDesktop = false } = useAdaptivityWithJSMediaQueries();
 
