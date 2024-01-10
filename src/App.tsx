@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import bridge from '@vkontakte/vk-bridge';
-import { SplitCol, SplitLayout, View, Root, Epic, ModalRoot } from '@vkontakte/vkui';
-import '@vkontakte/vkui/dist/vkui.css';
+import React, { useEffect, useState } from "react";
+import bridge from "@vkontakte/vk-bridge";
+import {
+  SplitCol,
+  SplitLayout,
+  View,
+  Root,
+  Epic,
+  ModalRoot,
+} from "@vkontakte/vkui";
+import "@vkontakte/vkui/dist/vkui.css";
 
 import {
   useActiveVkuiLocation,
   usePopout,
   useRouteNavigator,
   useGetPanelForView,
-} from '@vkontakte/vk-mini-apps-router';
+} from "@vkontakte/vk-mini-apps-router";
 
-import { Home } from './panels/Home';
-import Persik from './panels/Persik';
+import { Home } from "./panels/Home";
+import Persik from "./panels/Persik";
 import {
-  ALTERNATIVE_ROOT,
-  ALTERNATIVE_VIEW,
-  ALTERNATIVE_VIEW_PANELS,
   DEFAULT_ROOT,
   DEFAULT_VIEW,
   DEFAULT_VIEW_PANELS,
@@ -23,15 +27,14 @@ import {
   EMPTY_VIEW_PANELS,
   HOME_PANEL_MODALS,
   PERSIK_PANEL_MODALS,
-} from './routes';
-import { Empty } from './panels/Empty';
-import { PersikModal } from './modals/PersikModal';
-import { UserModal } from './modals/UserModal';
-import { Alternative } from './panels/Alternative';
-import { BlockerModal } from './modals/BlockerModal';
-import { OnboardingOne } from './onboarding/OnboardingOne';
-import { OnboardingTwo } from './onboarding/OnboardingTwo';
-import { OnboardingThree } from './onboarding/OnboardingThree';
+} from "./routes";
+import { Empty } from "./panels/Empty";
+import { PersikModal } from "./modals/PersikModal";
+import { UserModal } from "./modals/UserModal";
+import { BlockerModal } from "./modals/BlockerModal";
+import { OnboardingOne } from "./onboarding/OnboardingOne";
+import { OnboardingTwo } from "./onboarding/OnboardingTwo";
+import { OnboardingThree } from "./onboarding/OnboardingThree";
 
 function App() {
   const [fetchedUser, setUser] = useState<any>(null);
@@ -46,11 +49,10 @@ function App() {
 
   const defaultActivePanel = useGetPanelForView(DEFAULT_VIEW);
   const emptyActivePanel = useGetPanelForView(EMPTY_VIEW);
-  const alternativeActivePanel = useGetPanelForView(ALTERNATIVE_VIEW);
 
   useEffect(() => {
     async function fetchData() {
-      const user = await bridge.send('VKWebAppGetUserInfo');
+      const user = await bridge.send("VKWebAppGetUserInfo");
       setUser(user);
     }
     fetchData();
@@ -61,10 +63,16 @@ function App() {
   };
 
   const modal = (
-    <ModalRoot activeModal={activeModal} onClose={() => routeNavigator.hideModal()}>
+    <ModalRoot
+      activeModal={activeModal}
+      onClose={() => routeNavigator.hideModal()}
+    >
       <PersikModal nav={PERSIK_PANEL_MODALS.PERSIK}></PersikModal>
       <BlockerModal nav={HOME_PANEL_MODALS.BLOCKER} />
-      <UserModal nav={HOME_PANEL_MODALS.USER} fetchedUser={fetchedUser}></UserModal>
+      <UserModal
+        nav={HOME_PANEL_MODALS.USER}
+        fetchedUser={fetchedUser}
+      ></UserModal>
       <OnboardingOne nav={HOME_PANEL_MODALS.ONBOARDING_1} />
       <OnboardingTwo nav={HOME_PANEL_MODALS.ONBOARDING_2} />
       <OnboardingThree nav={HOME_PANEL_MODALS.ONBOARDING_3} />
@@ -83,7 +91,11 @@ function App() {
               activePanel={defaultActivePanel || DEFAULT_VIEW_PANELS.HOME}
               onSwipeBack={() => routeNavigator.back()}
             >
-              <Home nav={DEFAULT_VIEW_PANELS.HOME} fetchedUser={fetchedUser} go={go} />
+              <Home
+                nav={DEFAULT_VIEW_PANELS.HOME}
+                fetchedUser={fetchedUser}
+                go={go}
+              />
               <Persik nav={DEFAULT_VIEW_PANELS.PERSIK} />
             </View>
             <View
@@ -93,16 +105,6 @@ function App() {
               onSwipeBack={() => routeNavigator.back()}
             >
               <Empty nav={EMPTY_VIEW_PANELS.EMPTY} />
-            </View>
-          </Root>
-          <Root activeView={activeView} nav={ALTERNATIVE_ROOT}>
-            <View
-              nav={ALTERNATIVE_VIEW}
-              history={history}
-              activePanel={alternativeActivePanel || ALTERNATIVE_VIEW_PANELS.ALTERNATIVE}
-              onSwipeBack={() => routeNavigator.back()}
-            >
-              <Alternative nav={ALTERNATIVE_VIEW_PANELS.ALTERNATIVE} go={go} />
             </View>
           </Root>
         </Epic>

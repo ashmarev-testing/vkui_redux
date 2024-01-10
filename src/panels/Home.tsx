@@ -68,13 +68,8 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
             >
               Показываем только при первом старте
             </Button>
-            <Button
-              stretched
-              size="l"
-              mode="secondary"
-              onClick={() => go("/persik?additional=tra-ta-ta")}
-            >
-              Здесь будет поиск
+            <Button stretched size="l" mode="secondary">
+              Просто пустая кнопка
             </Button>
           </ButtonGroup>
         </ButtonGroup>
