@@ -7,6 +7,7 @@ import "@vkontakte/vkui/dist/vkui.css";
 import { Icon24Done, Icon24User } from "@vkontakte/icons";
 
 export type NasaItemData = {
+  date_for_sort: string;
   href: string;
   data: {
     center: string;
@@ -29,20 +30,6 @@ export type NasaItemData = {
 export const NasaItem: React.FC = () => {
   const [arr, setArr] = useState<NasaItemData[] | null>();
   const [query, setQuery] = useState("galaxy");
-
-  const onSearch = (event: React.MouseEventHandler<HTMLElement>) => {
-    console.log(event);
-  };
-  //let searchValue = "";
-  //if (event) {
-  //  searchValue = "andromeda galaxy";
-  //  console.log(typeof event);
-  //} else {
-  //  searchValue = "andromeda galaxy";
-  //}
-  //setQuery(searchValue);
-  //};
-
   const routeNavigator = useRouteNavigator();
 
   useEffect(() => {
@@ -52,7 +39,17 @@ export const NasaItem: React.FC = () => {
           const { data } = await axios.get(
             `https://images-api.nasa.gov/search?q=${query}`,
           );
-          console.log(data.collection.items, query);
+          data.collection.items.forEach((item: NasaItemData) => {
+            if (item) {
+              item.date_for_sort = item.data[0].date_created;
+            }
+          });
+          data.collection.items.sort(
+            (a: NasaItemData, b: NasaItemData) =>
+              new Date(b.date_for_sort).getTime() -
+              new Date(a.date_for_sort).getTime(),
+          );
+
           setArr(data.collection.items);
         } else {
           setArr([]);
