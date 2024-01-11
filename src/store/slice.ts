@@ -1,24 +1,20 @@
 //slice.ts
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface State {
-  query: string;
-  onboardingComplete: boolean;
+export interface UserState {
+  query: string; // 2 уровень
 }
 
-const initialState: State = {
-  query: "",
-  onboardingComplete: false,
+const initialState: UserState = {
+  query: "jupiter",
 };
 
 export const userSlice = createSlice({
-  name: "text",
-  initialState: {
-    value: "",
-  },
+  name: "user",
+  initialState,
   reducers: {
-    setQuery: (state, action) => {
-      state.value = action.payload;
+    setQuery: (state, action: PayloadAction<string>) => {
+      state.query = action.payload;
     },
   },
 });

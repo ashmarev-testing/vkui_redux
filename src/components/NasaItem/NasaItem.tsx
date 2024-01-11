@@ -40,8 +40,8 @@ export const NasaItem: React.FC = () => {
   //
   // redux-toolkit чтение
   const query = useSelector(
-    (state: { text: { value: string } }) => state.text.value,
-  );
+    (state: { user: { query: string } }) => state.user.query,
+  ) as string;
   if (query) {
     console.log("NasaItem 46", query);
   }
@@ -86,7 +86,7 @@ export const NasaItem: React.FC = () => {
           className={"input"}
           //onChange={(event) => setQuery(event.target.value)}
           onChange={(event) => dispatch(setQuery(event.target.value))}
-          value={query}
+          value={query as string}
         />
       </div>
       <CardGrid size="m">

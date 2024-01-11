@@ -4,6 +4,6 @@ import userSlice from "./slice"; // Подключение вашего reducer
 
 export default configureStore({
   reducer: {
-    text: userSlice,
+    user: userSlice, // 1 уровень
   },
 });
