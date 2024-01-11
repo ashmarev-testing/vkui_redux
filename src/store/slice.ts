@@ -11,7 +11,7 @@ const initialState: State = {
   onboardingComplete: false,
 };
 
-export const textSlice = createSlice({
+export const userSlice = createSlice({
   name: "text",
   initialState: {
     value: "",
@@ -23,6 +23,6 @@ export const textSlice = createSlice({
   },
 });
 
-export const { setQuery } = textSlice.actions;
+export const { setQuery } = userSlice.actions;
 
-export default textSlice.reducer;
+export default userSlice.reducer;
