@@ -13,6 +13,9 @@ import {
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
 import { NasaItem } from "../components";
+// redux-toolkit чтение
+import { useSelector } from "react-redux";
+//
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -21,6 +24,11 @@ type HomeProps = NavProp &
 
 export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
   useEnableSwipeBack();
+
+  const query = useSelector(
+    (state: { user: { query: string } }) => state.user.query,
+  ) as string;
+
   return (
     <Panel nav={nav}>
       <PanelHeader>Главная страница</PanelHeader>
@@ -67,7 +75,7 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
               Показываем только при первом старте
             </Button>
             <Button stretched size="l" mode="secondary">
-              Просто пустая кнопка
+              {query ? query : ""}
             </Button>
           </ButtonGroup>
         </ButtonGroup>
