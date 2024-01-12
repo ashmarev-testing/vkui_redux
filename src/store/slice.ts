@@ -6,7 +6,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  query: "moon",
+  query: "mars",
 };
 
 export const userSlice = createSlice({
