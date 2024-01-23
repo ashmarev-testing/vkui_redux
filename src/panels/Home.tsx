@@ -13,9 +13,8 @@ import {
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
 import { NasaItem } from "../components";
-// redux-toolkit чтение
 import { useSelector } from "react-redux";
-//
+import { Case } from "../components";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -81,7 +80,7 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
         </ButtonGroup>
       </Group>
       <Group>
-        <NasaItem></NasaItem>
+        <Case></Case>
       </Group>
     </Panel>
   );
