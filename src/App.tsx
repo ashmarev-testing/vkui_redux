@@ -1,109 +1,11 @@
-import React, { useEffect, useState } from "react";
-import bridge from "@vkontakte/vk-bridge";
-import {
-  SplitCol,
-  SplitLayout,
-  View,
-  Root,
-  Epic,
-  ModalRoot,
-} from "@vkontakte/vkui";
+import React from "react";
+import {} from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
-
-import {
-  useActiveVkuiLocation,
-  usePopout,
-  useRouteNavigator,
-  useGetPanelForView,
-} from "@vkontakte/vk-mini-apps-router";
-
 import { Home } from "./panels/Home";
-import {
-  DEFAULT_ROOT,
-  DEFAULT_VIEW,
-  DEFAULT_VIEW_PANELS,
-  EMPTY_VIEW,
-  EMPTY_VIEW_PANELS,
-  HOME_PANEL_MODALS,
-} from "./routes";
-import { Empty } from "./panels/Empty";
-import { UserModal } from "./modals/UserModal";
-import { OnboardingOne } from "./onboarding/OnboardingOne";
-import { OnboardingTwo } from "./onboarding/OnboardingTwo";
-import { OnboardingThree } from "./onboarding/OnboardingThree";
+import { Case } from "./components";
 
 function App() {
-  const [fetchedUser, setUser] = useState<any>(null);
-  const routerPopout = usePopout();
-  const routeNavigator = useRouteNavigator();
-  const {
-    root: activeRoot = DEFAULT_ROOT,
-    view: activeView = DEFAULT_VIEW,
-    modal: activeModal,
-    panelsHistory,
-  } = useActiveVkuiLocation();
-
-  const defaultActivePanel = useGetPanelForView(DEFAULT_VIEW);
-  const emptyActivePanel = useGetPanelForView(EMPTY_VIEW);
-
-  useEffect(() => {
-    async function fetchData() {
-      const user = await bridge.send("VKWebAppGetUserInfo");
-      setUser(user);
-    }
-    fetchData();
-  }, []);
-
-  const go = (path: string) => {
-    routeNavigator.push(path);
-  };
-
-  const modal = (
-    <ModalRoot
-      activeModal={activeModal}
-      onClose={() => routeNavigator.hideModal()}
-    >
-      <UserModal
-        nav={HOME_PANEL_MODALS.USER}
-        fetchedUser={fetchedUser}
-      ></UserModal>
-      <OnboardingOne nav={HOME_PANEL_MODALS.ONBOARDING_1} />
-      <OnboardingTwo nav={HOME_PANEL_MODALS.ONBOARDING_2} />
-      <OnboardingThree nav={HOME_PANEL_MODALS.ONBOARDING_3} />
-    </ModalRoot>
-  );
-
-  const history = activeModal || routerPopout ? [] : panelsHistory;
-  return (
-    <SplitLayout popout={routerPopout} modal={modal}>
-      <SplitCol>
-        <Epic activeStory={activeRoot}>
-          <Root activeView={activeView} nav={DEFAULT_ROOT}>
-            <View
-              nav={DEFAULT_VIEW}
-              history={history}
-              activePanel={defaultActivePanel || DEFAULT_VIEW_PANELS.HOME}
-              onSwipeBack={() => routeNavigator.back()}
-            >
-              <Home
-                nav={DEFAULT_VIEW_PANELS.HOME}
-                fetchedUser={fetchedUser}
-                go={go}
-              />
-            </View>
-            <View
-              nav={EMPTY_VIEW}
-              history={history}
-              activePanel={emptyActivePanel || EMPTY_VIEW_PANELS.EMPTY}
-              onSwipeBack={() => routeNavigator.back()}
-            >
-              <Empty nav={EMPTY_VIEW_PANELS.EMPTY} />
-            </View>
-          </Root>
-        </Epic>
-      </SplitCol>
-    </SplitLayout>
-  );
+  return <Case></Case>;
 }
 
 export default App;
