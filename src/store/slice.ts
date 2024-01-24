@@ -32,6 +32,9 @@ export const userSlice = createSlice({
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
     },
+    setLanguage: (state, action: PayloadAction<string>) => {
+      state.language = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,6 +53,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setQuery } = userSlice.actions;
+export const { setQuery, setLanguage } = userSlice.actions;
 
 export default userSlice.reducer;

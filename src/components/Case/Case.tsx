@@ -1,7 +1,6 @@
 // Case.tsx
 import React, { useEffect } from "react";
-//import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
+//import { RootState } from "../../store";
 import { useAppDispatch, useAppSelector } from "../../store";
 import * as api from "../../api";
 import { CaseItem } from "../../types";
@@ -9,6 +8,7 @@ import { CaseItem } from "../../types";
 export const Case: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector((state) => state.user.cases);
+  const language = useAppSelector((state) => state.user.language);
 
   useEffect(() => {
     dispatch(api.cases.getCases());

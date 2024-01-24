@@ -1,7 +1,12 @@
 import React from "react";
 import {} from "@vkontakte/vkui";
-import { Case } from "../components";
+import { Case, Language } from "../components";
 
 export const Home = () => {
-  return <Case></Case>;
+  return (
+    <>
+      <Case></Case>
+      <Language></Language>
+    </>
+  );
 };

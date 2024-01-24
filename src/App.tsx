@@ -5,7 +5,7 @@ import { Home } from "./panels/Home";
 import { Case } from "./components";
 
 function App() {
-  return <Case></Case>;
+  return <Home></Home>;
 }
 
 export default App;
