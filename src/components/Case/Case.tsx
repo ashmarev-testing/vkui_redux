@@ -24,11 +24,13 @@ export const Case: React.FC = () => {
 
   return (
     <ul>
-      {data.map((item: CaseItem, index) => (
-        <li key={index}>
-          {item.id}, {item.language}, {item.point_id}, {item.text}
-        </li>
-      ))}
+      {data
+        .filter((item: CaseItem) => item.language === language)
+        .map((item: CaseItem, index) => (
+          <li key={index}>
+            {item.id}, {item.language}, {item.point_id}, {item.text}
+          </li>
+        ))}
     </ul>
   );
 };

@@ -5,8 +5,8 @@ import { Case, Language } from "../components";
 export const Home = () => {
   return (
     <>
-      <Case></Case>
       <Language></Language>
+      <Case></Case>
     </>
   );
 };
